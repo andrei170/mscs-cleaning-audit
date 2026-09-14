@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MSCS Cleaning — Recruitment Audit</title><style>
+:root{--bg:#0d1117;--panel:#161b22;--ink:#e6edf3;--mut:#9aa7b4;--line:#2a3340;--accent:#2f81f7;
+  --good:#3fb950;--bad:#f85149;--gradF:#f85149;--gradD:#e8702a;--gradC:#d29922;--gradB:#3fb950;--gradA:#2ea043;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--mut);font-weight:600}
+header{padding:46px 0 28px;border-bottom:1px solid var(--line);background:radial-gradient(1200px 400px at 70% -10%,rgba(47,129,247,.18),transparent)}
+h1{font-size:30px;font-weight:800;margin:10px 0 6px;letter-spacing:-.01em}
+.sub{color:var(--mut);font-size:15px}
+.hero{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:center;margin:34px 0 8px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.gradecard{border:1px solid var(--line);border-radius:18px;padding:26px;text-align:center;position:relative;overflow:hidden}
+.gc-F{background:linear-gradient(160deg,#2a1410,#1c2330)}.gc-D{background:linear-gradient(160deg,#2a1c10,#1c2330)}
+.gc-C{background:linear-gradient(160deg,#2a2410,#1c2330)}.gc-B{background:linear-gradient(160deg,#102a1a,#1c2330)}
+.bigletter{font-size:96px;font-weight:900;line-height:1;position:relative}
+.bl-F{color:var(--gradF);text-shadow:0 0 40px rgba(248,81,73,.45)}
+.bl-D{color:var(--gradD);text-shadow:0 0 40px rgba(232,112,42,.45)}
+.bl-C{color:var(--gradC);text-shadow:0 0 40px rgba(210,153,34,.45)}
+.score100{font-size:18px;color:var(--mut);margin-top:6px;position:relative}
+.heroread h2{font-size:21px;font-weight:800;margin-bottom:10px}
+.heroread p{color:var(--mut);font-size:15.5px}
+.heroread .tag{display:inline-block;margin-top:14px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink);background:var(--panel)}
+section{padding:34px 0;border-bottom:1px solid var(--line)}
+.h{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.row{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.rname{font-weight:600;font-size:15px}
+.bar{height:7px;background:#0b0f15;border-radius:99px;margin-top:9px;overflow:hidden}
+.fill{height:100%;border-radius:99px}
+.badge{font-weight:800;font-size:15px;min-width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#0d1117}
+.gF{background:var(--gradF)}.gD{background:var(--gradD)}.gC{background:var(--gradC)}.gB{background:var(--gradB);color:#06210f}.gA{background:var(--gradA);color:#06210f}
+.sc{font-size:12px;color:var(--mut);margin-top:3px}
+.flag{background:linear-gradient(160deg,#2a1410,#161b22);border:1px solid #6f2a1f;border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.flag .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--bad);font-weight:700;margin-bottom:8px}
+.win{background:linear-gradient(160deg,#0f2417,#161b22);border:1px solid #1f6f3a;border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.win .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--good);font-weight:700;margin-bottom:8px}
+.warn{background:linear-gradient(160deg,#2a2410,#161b22);border:1px solid #6f5a1f;border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.warn .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gradC);font-weight:700;margin-bottom:8px}
+.flag p,.win p,.warn p{color:var(--mut);font-size:14.5px;margin-bottom:9px}
+.flag p:last-child,.win p:last-child,.warn p:last-child{margin-bottom:0}
+.flag b,.win b,.warn b{color:var(--ink)}
+.flag ul,.win ul,.warn ul{margin:0 0 9px 20px;color:var(--mut);font-size:14.5px}
+.flag li,.win li,.warn li{margin-bottom:6px}
+.code{background:#0b0f15;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:12px 0;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px;line-height:1.85;color:var(--mut);overflow-x:auto}
+.code .ph{color:#ff9d94;font-weight:700}.code .ok{color:#84e0a8;font-weight:700}.code .c{color:#5b6672}
+.cmp{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cmp th{text-align:left;padding:11px 14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--line);font-weight:700}
+.cmp td{padding:11px 14px;border-bottom:1px solid var(--line);color:var(--mut);vertical-align:top}
+.cmp tr:last-child td{border-bottom:none}.cmp td b{color:var(--ink)}.cmp tr.you td{background:#241a12}
+.cmp .yes{color:var(--good);font-weight:700}.cmp .no{color:var(--bad);font-weight:700}
+.opp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.opp{grid-template-columns:1fr}}
+.ocard{background:linear-gradient(160deg,#0f2417,#161b22);border:1px solid #1f6f3a;border-radius:14px;padding:20px;text-align:center}
+.ocard .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut)}
+.ocard .big{font-size:30px;font-weight:900;color:var(--good);margin:8px 0 2px}
+.ocard .small{font-size:13px;color:var(--mut)}
+.oppnote{color:var(--mut);font-size:14px;margin-top:14px}.oppnote b{color:var(--ink)}
+.arrow{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px 0 2px;flex-wrap:wrap}
+.pill{font-size:60px;font-weight:900;line-height:1}
+.pill.from-F{color:var(--gradF)}.pill.from-D{color:var(--gradD)}.pill.from-C{color:var(--gradC)}
+.pill.to{color:var(--gradA)}
+.pilllab{font-size:12px;color:var(--mut);text-align:center;text-transform:uppercase;letter-spacing:.1em}
+.ar{font-size:34px;color:var(--mut)}
+ul.road{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:760px){ul.road{grid-template-columns:1fr}}
+ul.road li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 14px;font-size:14.5px}
+.road2 li{border-left-color:var(--good)}
+.cta{text-align:center;padding:40px 0 56px}
+.cta h2{font-size:22px;font-weight:800;margin-bottom:8px}
+.cta p{color:var(--mut);font-size:15px}
+footer{color:var(--mut);font-size:12.5px;text-align:center;padding:22px 0 40px;line-height:1.7}
+.gscale{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 26px 20px;margin-top:16px}
+.gscale .gtitle{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);font-weight:700;margin-bottom:26px;text-align:center}
+.gtrack{position:relative;height:14px;border-radius:8px;background:linear-gradient(90deg,#f85149 0%,#f85149 18%,#e3833c 34%,#d4a72c 52%,#7ec46a 74%,#3fb950 100%);margin:0 4px}
+.gmark{position:absolute;top:-46px;transform:translateX(-50%);text-align:center;white-space:nowrap}
+.gmark .gm-lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);font-weight:700}
+.gmark .gm-val{font-size:19px;font-weight:900;line-height:1.15}
+.gmark:after{content:"";position:absolute;left:50%;top:100%;width:2px;height:22px;transform:translateX(-50%);background:currentColor;opacity:.75}
+.gmark.now{color:var(--bad)}.gmark.now .gm-val{color:var(--bad)}
+.gmark.proj{color:var(--good)}.gmark.proj .gm-val{color:var(--good)}
+.gmark.proj{top:auto;bottom:-52px}
+.gmark.proj:after{top:auto;bottom:100%}
+.gdot{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;transform:translate(-50%,-50%);border:3px solid #0d1117}
+.gdot.now{background:var(--bad)}.gdot.proj{background:var(--good)}
+.gticks{display:flex;justify-content:space-between;margin:66px 4px 0;font-size:11px;letter-spacing:.08em;color:var(--mut);font-weight:700}
+@media(max-width:620px){.gmark .gm-lab{font-size:9px}.gmark .gm-val{font-size:16px}}
+</style></head><body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Recruitment Audit &middot; MSCS Cleaning Ltd &middot; London &amp; Kent</div>
+    <h1>640 Interviews. 2 Hires. 1 Still There.</h1>
+    <div class="sub">Prepared for Mario Petralia &middot; MSCS Cleaning Ltd &middot; 14 September 2026 &middot; AG1 Consulting</div>
+
+    <div class="hero">
+      <div class="gradecard gc-F">
+        <div class="bigletter bl-F" style="font-size:56px">640:1</div>
+        <div class="score100">interviews for every person who stayed</div>
+      </div>
+      <div class="heroread">
+        <h2>You do not have a shortage of applicants. You have no filter between the advert and the interview.</h2>
+        <p>Indeed did its job. It sent you applicants &mdash; hundreds of them. The problem is that every bit of the
+        sorting happened in your interview room, one person at a time.</p>
+        <p>If each interview took just twenty minutes, that is <b>over 200 hours</b> of your time to find two
+        people, one of whom has already gone. That is not a hiring process. That is a second job.</p>
+        <div class="tag">Your figures, as you gave them to our team &middot; site read 14 September 2026</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="h">Finding 1 &mdash; The Filter Is In The Wrong Place</div>
+    <div class="code">
+How it works today:
+
+  Indeed advert  -&gt;  anyone can apply  -&gt;  <span class="ph">you interview them</span>  -&gt;  you find out
+
+What it produced:
+
+  Interviews ............ <span class="ph">640</span>
+  Hired ................. <span class="ph">2</span>
+  Still with you ........ <span class="ph">1</span>
+
+How it should work:
+
+  Advert  -&gt;  <span class="ok">they answer your questions first</span>  -&gt;  only the qualified reach you  -&gt;  interview
+    </div>
+    <div class="flag">
+      <div class="lab">Job boards are built for volume</div>
+      <p>A job board's job is to get you as many applicants as possible, from people who are often applying to a lot
+      of jobs at once. That is useful when anyone can do the role. <b>It is the wrong tool when you need someone who
+      already knows how to use a water-fed pole, turns up, and represents your name on a client's site.</b></p>
+      <p>The fix is not a better advert on the same board. It is asking the qualifying questions <b>before</b>
+      anyone gets an interview, so the 638 who were never right rule themselves out.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="h">Finding 2 &mdash; Your Website Says Nothing To An Applicant</div>
+    <div class="code">
+Pages on mariossupercleaningservices.co.uk:   <span class="ok">14</span>
+Pages about working for MSCS:                 <span class="ph">0</span>
+
+What your homepage tells a customer:
+  "fully qualified and insured operatives"
+  "site managers regularly inspect the premises"
+  "Thermopure Hot Water system"
+
+What it tells a good operative deciding where to work:   <span class="ph">nothing</span>
+    </div>
+    <div class="warn">
+      <div class="lab">Good operatives check you out before they apply</div>
+      <p>The people you actually want are mostly already working for somebody else. Before they move, they look you
+      up. Right now they find a site written for customers, with no page about the work, the kit, the areas, the
+      standards or why MSCS is a better seat than where they are.</p>
+      <p><b>You have a genuinely good story</b> &mdash; over twenty years, commercial and residential contracts
+      across London and Kent, proper equipment, SMAS accreditation. None of it is aimed at the person you are trying
+      to hire.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="h">Finding 3 &mdash; You Are One Advert Among Hundreds</div>
+    <div class="win">
+      <div class="lab">The job boards are crowded with exactly the same role</div>
+      <p>Around two hundred window cleaning vacancies in London were listed on a single major job board this summer.
+      Your Indeed advert sits on the same shelf as all of them, competing on the one thing a listing shows &mdash; a
+      job title and a rate.</p>
+      <p><b>The people who are good at this are not scrolling that shelf.</b> Reaching operatives who already do the
+      work, around London and Kent, whether or not they are job hunting, is how you stop competing with two hundred
+      other adverts for the same few applicants.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="h">Finding 4 &mdash; "Qualified" Is Not Written Down Anywhere</div>
+    <div class="code">
+The questions that decide who reaches an interview:
+
+  Water-fed pole / pure water experience .......... <span class="ok">yes / no / how long</span>
+  Roof, gutter, pressure washing, carpet work ..... <span class="ok">which ones</span>
+  Full UK driving licence ......................... <span class="ok">yes / no</span>
+  Right to work in the UK ......................... <span class="ok">yes / no</span>
+  Areas they can reach (London / Kent) ............ <span class="ok">which</span>
+  When they can start ............................. <span class="ok">date</span>
+    </div>
+    <div class="flag">
+      <div class="lab">If you cannot write it down, you cannot filter on it</div>
+      <p>At the moment "qualified" lives in your head, so the only way to test it is to interview. Written down as six
+      questions, it becomes a filter that runs while you are on a job &mdash; and anyone who cannot answer never takes
+      up a slot in your diary.</p>
+      <p>The same page is also where the <b>real pay, hours and what the work involves</b> go. People who would leave
+      after a week rule themselves out before you have trained them.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="h">Two Small Fixes While You Are Here</div>
+    <div class="warn">
+      <div class="lab">Unrelated to hiring, and worth ten minutes</div>
+      <ul>
+        <li><b>One contact block on your homepage shows the wrong mobile number.</b> It reads and dials
+        079 5725 3219, while everywhere else on the site says 07957 153219. One digit, and those callers never reach you.</li>
+        <li><b>Your SMAS accreditation only appears as a logo image.</b> A picture cannot be read by Google or by
+        somebody skimming on a phone. Put it in words too.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="h">The Scorecard</div>
+    <div class="grid">
+      <div class="row"><div><div class="rname">Interviews per retained hire</div><div class="sc">640 to 1</div></div><div class="badge gF">F</div></div>
+      <div class="row"><div><div class="rname">Screening before interview</div><div class="sc">None &mdash; all done in person</div></div><div class="badge gF">F</div></div>
+      <div class="row"><div><div class="rname">Careers page</div><div class="sc">0 of 14 pages</div></div><div class="badge gF">F</div></div>
+      <div class="row"><div><div class="rname">Recruitment channels</div><div class="sc">Indeed only</div></div><div class="badge gD">D</div></div>
+      <div class="row"><div><div class="rname">"Qualified" defined in writing</div><div class="sc">Not anywhere we could see</div></div><div class="badge gD">D</div></div>
+      <div class="row"><div><div class="rname">Contact numbers</div><div class="sc">One block shows a wrong mobile</div></div><div class="badge gD">D</div></div>
+      <div class="row"><div><div class="rname">Analytics</div><div class="sc">Google Analytics installed</div></div><div class="badge gB">B</div></div>
+      <div class="row"><div><div class="rname">Customer town pages</div><div class="sc">8 window cleaning areas</div></div><div class="badge gB">B</div></div>
+      <div class="row"><div><div class="rname">Accreditation</div><div class="sc">SMAS &mdash; logo only</div></div><div class="badge gC">C</div></div>
+      <div class="row"><div><div class="rname">Own photography</div><div class="sc">Real MSCS jobs and branded kit</div></div><div class="badge gB">B</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="h">The Method, In Three Steps</div>
+    <ul class="road">
+      <li><b>Go where qualified people already are.</b> Put the job in front of people who already do this work,
+      around London and Kent, not only the ones browsing job boards.</li>
+      <li><b>Make them qualify themselves.</b> Six questions before an interview. Can't answer? No slot in your diary.</li>
+      <li><b>Stop the early leavers.</b> Real pay, hours and what the job involves, up front.</li>
+      <li><b>Measure the right thing.</b> Cost per person hired, and whether they are still with you after 90 days
+      &mdash; not how many applied.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <h2>Fewer applicants. The right ones. Before they reach your diary.</h2>
+    <p>Indeed gives you people. This gives you people who have already answered your questions.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Prepared by Andrei Givero &middot; AG1 Consulting &middot; 14 September 2026<br><br>
+    For Mario Petralia, MSCS Cleaning Ltd, London and Kent. <b>Statements about the website were read from
+    mariossupercleaningservices.co.uk's own served pages and published sitemap on 14 September 2026 and are
+    reproducible</b> &mdash; the fourteen page addresses, the absence of any careers or vacancies page, the wording of
+    the homepage, the two mobile numbers shown in different contact blocks, the SMAS logo and the Google Analytics tag.
+    Company details were confirmed against the Companies House register: <b>MSCS Cleaning Limited, company number
+    10303467, with Mario Petralia as director.</b> <b>The interview, hiring and retention figures are as reported to our
+    team and have not been independently verified.</b> The 200-hour figure is illustrative arithmetic based on an
+    assumed twenty minutes per interview. The number of London window cleaning vacancies refers to public job-board
+    listings seen in search results in summer 2026 and is approximate. <b>No cost per hire, number of applicants,
+    number of hires, retention rate or return figure is forecast or promised anywhere in this document.</b> Nothing
+    here is employment or HR advice; decisions on screening, right-to-work checks and employment terms remain with MSCS
+    Cleaning Ltd. Company and platform names are used for identification only. The grades shown are AG1's own
+    editorial assessment, not an industry-standard measurement.
+  </div>
+</footer>
+</body></html>
